@@ -50,7 +50,7 @@
       });
 
       this.loadList = function() {
-        if (self.data === undefined && self.listUrl !== undefined) {
+        if (self.data === undefined && listUrl !== undefined) {
           $.get(listUrl, function(data) {
             self.data = data;
             $.each(data, function(key, value) {
