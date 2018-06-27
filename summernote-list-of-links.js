@@ -49,17 +49,19 @@
       });
 
       this.loadList = function() {
-        $.get(listUrl, function(data) {
-          self.data = data;
-          $.each(data, function(key, value) {
-            var url = value[0];
-            var label = value[1];
-            $('.note-link-list').append($('<option>', { 
-              value: url,
-              text : label 
-            }));          
-          });
-        })
+        if (self.data === undefined) {
+          $.get(listUrl, function(data) {
+            self.data = data;
+            $.each(data, function(key, value) {
+              var url = value[0];
+              var label = value[1];
+              $('.note-link-list').append($('<option>', { 
+                value: url,
+                text : label 
+              }));
+            });
+          })
+        }
       }
 
       this.initialize = function () {
@@ -77,14 +79,14 @@
         this.$linkText = self.$dialog.find('.note-link-text');
         this.$linkList = self.$dialog.find('.note-link-list');
         this.$linkBtn = self.$dialog.find('.note-link-btn');
-
-        this.loadList();
       };
 
       this.show = function () {
         var linkInfo = context.invoke('editor.getLinkInfo');
         context.invoke('editor.saveRange');
         context.triggerEvent('dialog.shown');
+
+        this.loadList();
 
         this.showLinkDialog(linkInfo).then(function (linkInfo) {
           context.invoke('editor.restoreRange');
@@ -123,7 +125,6 @@
               deferred.reject();
             }
           });
-
           ui.showDialog(self.$dialog);
         });
       };

@@ -2,7 +2,6 @@
 
 This plugin adds a button to let you choose from an external list of links, provided as json.
 
-
 ## Usage
 
     $(document).ready(function() {
