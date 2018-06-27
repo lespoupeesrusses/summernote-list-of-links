@@ -1,5 +1,7 @@
 # Summernote List Of Links
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/7cd29f1577d8c2fb3da1/maintainability)](https://codeclimate.com/github/lespoupeesrusses/summernote-list-of-links/maintainability)
+
 This plugin adds a button to let you choose from an external list of links, provided as json.
 
 ## Usage
