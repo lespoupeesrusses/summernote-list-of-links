@@ -1,6 +1,6 @@
 {
   "name": "summernote-list-of-links",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin for the Summernote WYSIWYG editor, that lets you choose from an external list of links, provided as json.",
   "main": "summernote-list-of-links.js",
   "author": "lespoupeesrusses",

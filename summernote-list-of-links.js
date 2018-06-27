@@ -35,8 +35,9 @@
 
       var $editor = context.layoutInfo.editor;
       var options = context.options;
-
-      var listUrl = options.listOfLinks.listUrl;
+      if (options.listOfLinks !== undefined) {
+        var listUrl = options.listOfLinks.listUrl;
+      }
 
       context.memo('button.list-of-links', function () {
         return ui.button({
@@ -49,7 +50,7 @@
       });
 
       this.loadList = function() {
-        if (self.data === undefined) {
+        if (self.data === undefined && self.listUrl !== undefined) {
           $.get(listUrl, function(data) {
             self.data = data;
             $.each(data, function(key, value) {
