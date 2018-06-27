@@ -1,4 +1,15 @@
 {
   "name": "Summernote List of links",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "A plugin for the Summernote WYSIWYG editor, that lets you choose from an external list of links, provided as json.",
+  "main": "summernote-list-of-links.js",
+  "author": "lespoupeesrusses",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lespoupeesrusses/summernote-list-of-links.git"
+  },
+  "dependencies": {
+    "summernote": "^0.8.2"
+  }
 }
