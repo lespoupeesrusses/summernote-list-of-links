@@ -50,19 +50,24 @@
       });
 
       this.loadList = function() {
-        if (self.data === undefined && listUrl !== undefined) {
-          $.get(listUrl, function(data) {
-            self.data = data;
-            $.each(data, function(key, value) {
-              var url = value[0];
-              var label = value[1];
-              $('.note-link-list').append($('<option>', { 
-                value: url,
-                text : label 
-              }));
-            });
-          })
-        }
+        return $.Deferred(function(deferred) {
+          if (self.data === undefined && listUrl !== undefined) {
+            $.get(listUrl, function(data) {
+              self.data = data;
+              $.each(data, function(key, value) {
+                var url = value[0];
+                var label = value[1];
+                $('.note-link-list').append($('<option>', { 
+                  value: url,
+                  text : label 
+                }));
+                deferred.resolve();
+              });
+            })
+          } else {
+            deferred.resolve();
+          }
+        });
       }
 
       this.initialize = function () {
@@ -87,14 +92,13 @@
         context.invoke('editor.saveRange');
         context.triggerEvent('dialog.shown');
 
-        this.loadList();
-
-        this.showLinkDialog(linkInfo).then(function (linkInfo) {
-          context.invoke('editor.restoreRange');
-          context.invoke('editor.createLink', linkInfo);
-
-        }).fail(function () {
-          context.invoke('editor.restoreRange');
+        this.loadList().then(function() {
+          self.showLinkDialog(linkInfo).then(function (linkInfo) {
+            context.invoke('editor.restoreRange');
+            context.invoke('editor.createLink', linkInfo);
+          }).fail(function () {
+            context.invoke('editor.restoreRange');
+          });
         });
       };
 
