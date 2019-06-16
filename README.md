@@ -4,6 +4,8 @@
 
 This plugin adds a button to let you choose from an external list of links, provided as json.
 
+**NOTE : Requires Bootstrap**
+
 ## Usage
 
     $(document).ready(function() {
