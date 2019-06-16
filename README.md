@@ -2,9 +2,13 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/7cd29f1577d8c2fb3da1/maintainability)](https://codeclimate.com/github/lespoupeesrusses/summernote-list-of-links/maintainability)
 
+**NOTE : Requires Bootstrap**
+
 This plugin adds a button to let you choose from an external list of links, provided as json.
 
-**NOTE : Requires Bootstrap**
+Options :
+- `listUrl`: Async-called URL to get the list of files
+- `title` (optional): Title of the dialog & the button's tooltip.
 
 ## Usage
 
@@ -15,7 +19,8 @@ This plugin adds a button to let you choose from an external list of links, prov
                 ['style', ['bold', 'italic', 'underline', 'link', 'list-of-links', 'codeview']]
             ],
             listOfLinks: {
-              listUrl: 'data.json'
+              listUrl: 'data.json',
+              title: 'List of websites'
             }
         });
     });

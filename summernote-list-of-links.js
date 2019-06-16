@@ -1,8 +1,8 @@
 /**
- * 
+ *
  * Les Poupées Russes
  * email: contact@lespoupees.paris
- * 
+ *
  */
 (function (factory) {
   /* global define */
@@ -28,21 +28,26 @@
       <select class="note-link-list form-control note-form-control note-input"></select>\
     </div>'
 
-  $.extend($.summernote.plugins, { 
+  $.extend($.summernote.plugins, {
     'list-of-links': function(context) {
       var self = this;
       var ui = $.summernote.ui;
 
       var $editor = context.layoutInfo.editor;
       var options = context.options;
+      var listUrl, dialogTitle;
       if (options.listOfLinks !== undefined) {
-        var listUrl = options.listOfLinks.listUrl;
+        listUrl = options.listOfLinks.listUrl;
+        dialogTitle = options.listOfLinks.title;
+      }
+      if (dialogTitle === undefined) {
+        dialogTitle = 'List of links';
       }
 
       context.memo('button.list-of-links', function () {
         return ui.button({
           contents: '<i class="note-icon-unorderedlist"> <i class="note-icon-link">',
-          tooltip: 'List of links',
+          tooltip: dialogTitle,
           click: function () {
             self.show();
           }
@@ -57,9 +62,9 @@
               $.each(data, function(key, value) {
                 var url = value[0];
                 var label = value[1];
-                $('.note-link-list').append($('<option>', { 
+                $('.note-link-list').append($('<option>', {
                   value: url,
-                  text : label 
+                  text : label
                 }));
                 deferred.resolve();
               });
@@ -77,7 +82,7 @@
         var footer = '<button type="submit" href="#" class="' + buttonClass + '">Insert link</button>';
 
         this.$dialog = ui.dialog({
-          title: 'List of links',
+          title: dialogTitle,
           body: body_prototype,
           footer: footer
         }).render().appendTo($container);
@@ -133,6 +138,6 @@
           ui.showDialog(self.$dialog);
         });
       };
-    } 
+    }
   });
 }));
